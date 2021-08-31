@@ -1,9 +1,5 @@
-# Fabric Example Mod
+# Chunk Mod
 
-## Setup
+## Install
 
-For setup instructions please see the [fabric wiki page](https://fabricmc.net/wiki/tutorial:setup) that relates to the IDE that you are using.
-
-## License
-
-This template is available under the CC0 license. Feel free to learn from it and incorporate it in your own projects.
+Just add this into the `mods` folder. Recommended with the [Moonlight](https://github.com/Gregor0410/Moonlight) mod. It is not allowed for speedruns at the present time.
