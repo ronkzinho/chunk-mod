@@ -1,15 +1,15 @@
 package net.fabricmc.example.mixin;
 
-import net.minecraft.client.gui.screen.TitleScreen;
+import net.minecraft.server.world.ServerChunkManager;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
-import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
+import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 
-@Mixin(TitleScreen.class)
+@Mixin({ServerChunkManager.class})
 public class ExampleMixin {
-	@Inject(at = @At("HEAD"), method = "init()V")
-	private void init(CallbackInfo info) {
-		System.out.println("This line is printed by an example mod mixin!");
-	}
+  @Inject(method = {"getTotalChunksLoadedCount"}, at = {@At("RETURN")}, cancellable = true)
+  private void onGetTotalChunksLoadedCount(CallbackInfoReturnable<Integer> cir) {
+    cir.setReturnValue(Integer.valueOf(441));
+  }
 }
