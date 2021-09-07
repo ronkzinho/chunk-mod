@@ -17,9 +17,6 @@
   "icon": "assets/chunkmod/icon.png",
 
   "environment": "*",
-  "entrypoints": {
-    "main": []
-  },
   "mixins": [
     "chunkmod.mixins.json"
   ],
