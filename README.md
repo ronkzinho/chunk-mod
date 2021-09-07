@@ -2,4 +2,4 @@
 
 ## Install
 
-Download the mod file, `chunkmod-x.y.z.jar`, from the releases and add it into the `mods` folder. Recommended with the [Moonlight](https://github.com/Gregor0410/Moonlight) mod. It is not allowed for speedruns at the present time.
+Download the mod file at the top of the [releases](https://github.com/Mario0051/chunk-mod/releases) page, `chunkmod-x.y.z.jar`, and add it into the `mods` folder. Recommended with the [LazyStronghold](https://github.com/Gregor0410/LazyStronghold) mod. It is not allowed for speedruns yet.
