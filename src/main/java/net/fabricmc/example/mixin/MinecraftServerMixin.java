@@ -6,12 +6,12 @@ import net.minecraft.entity.boss.BossBarManager;
 import net.minecraft.server.MinecraftServer;
 import net.minecraft.server.PlayerManager;
 import net.minecraft.server.world.ServerWorld;
+import net.minecraft.util.registry.DynamicRegistryManager;
 import net.minecraft.util.registry.RegistryKey;
-import net.minecraft.util.registry.RegistryTracker;
 import net.minecraft.world.level.ServerWorldProperties;
-import net.minecraft.world.level.storage.LevelStorage;
 import net.minecraft.world.SaveProperties;
 import net.minecraft.world.World;
+import net.minecraft.world.level.storage.LevelStorage;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.spongepowered.asm.mixin.Final;
@@ -23,17 +23,14 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 
 @Mixin(MinecraftServer.class)
 public class MinecraftServerMixin {
+  @Shadow @Final protected LevelStorage.Session session;
   @Shadow
   @Final
   private static Logger LOGGER = LogManager.getLogger();
 
   @Shadow
   @Final
-  protected LevelStorage.Session session;
-
-  @Shadow
-  @Final
-  protected RegistryTracker.Modifiable dimensionTracker;
+  protected DynamicRegistryManager.Impl registryManager;
 
   @Shadow
   @Final
@@ -68,8 +65,8 @@ public class MinecraftServerMixin {
     ServerWorld lv2 = this.getOverworld();
     ServerWorldProperties lv3 = this.saveProperties.getMainWorldProperties();
     lv3.setWorldBorder(lv2.getWorldBorder().write());
-    this.saveProperties.setCustomBossEvents(this.getBossBarManager().toTag());
-    this.session.method_27426(this.dimensionTracker, this.saveProperties, this.getPlayerManager().getUserData());
+    this.saveProperties.setCustomBossEvents(this.getBossBarManager().toNbt());
+    this.session.backupLevelDataFile(this.registryManager, this.saveProperties, this.getPlayerManager().getUserData());
     return bl4;
   }
 
