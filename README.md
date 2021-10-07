@@ -1,3 +1,5 @@
+Port of the chunk mod for 1.17, original README below
+
 # Chunk Mod
 
 ## Install
